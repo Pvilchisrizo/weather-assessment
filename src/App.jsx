@@ -5,6 +5,7 @@ import TempToggle from "./components/TempToggle";
 import StatusMessage from "./components/StatusMessage";
 import CurrentWeather from "./components/CurrentWeather";
 import Forecast from "./components/Forecast";
+import Footer from "./components/Footer";
 
 export default function App() {
   const { data, status, error, fetchWeather } = useWeather();
@@ -16,7 +17,7 @@ export default function App() {
     <main className="app">
       <div className="container">
         <header className="header">
-          <h1>Weather</h1>
+          <h1>Get Your Weather</h1>
           <TempToggle unit={unit} onToggle={toggleUnit} />
         </header>
 
@@ -29,6 +30,7 @@ export default function App() {
             <Forecast days={data.daily} unit={unit} />
           </>
         )}
+        <Footer />
       </div>
     </main>
   );
