@@ -1,4 +1,4 @@
-const localDate = (dt, offset) => new Date((dt = offset) * 1000);
+const localDate = (dt, offset) => new Date((dt + offset) * 1000);
 
 export function getDailyForecast(list, timezoneOffset) {
   const days = {};
@@ -31,7 +31,7 @@ export function getDailyForecast(list, timezoneOffset) {
 
       return {
         key,
-        dayName: day.date.toLocalDateString("en-US", {
+        dayName: day.date.toLocaleDateString("en-US", {
           weekday: "short",
           timeZone: "UTC",
         }),

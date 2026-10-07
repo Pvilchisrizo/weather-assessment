@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from "react";
-import { getWeather } from "../API/openWeatherAPI";
-import { getDailyForecast } from "../units-forecast./weekForecast";
+import { getWeather } from "./API/openWeatherAPI";
+import { getDailyForecast } from "./units-forecast/weekForecast";
 
 export function useWeather() {
   const [data, setData] = useState(null);

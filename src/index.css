@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Michroma&display=swap");
+
+:root {
+  --text: #fff;
+  --muted: rgba(255, 255, 255, 0.7);
+  --glass: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --accent: #7cc4ff;
+  --error: #ffb4a9;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+.temp {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+}
+
+/* Layout */
+.app {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./assets/stanleypark.jpeg") no-repeat center center / cover fixed;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  background-color: var(--glass);
+  backdrop-filter: blur(8px);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Unit toggle */
+.temp-toggle {
+  display: flex;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: var(--glass);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.temp-toggle span {
+  padding: 0.4rem 0.9rem;
+  color: var(--muted);
+  font: inherit;
+}
+
+.temp-toggle span.active {
+  background: var(--text);
+  color: #000;
+}
+
+/* Search */
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  background: var(--glass);
+  color: var(--text);
+  font: inherit;
+}
+
+.search input::placeholder {
+  color: var(--muted);
+}
+
+.search button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--text);
+  color: #000;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.input-error {
+  flex-basis: 100%;
+  color: var(--error);
+}
+
+/* Status */
+.status {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.status.error {
+  color: var(--error);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  border: 4px solid var(--glass-border);
+  border-top-color: var(--text);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Current weather */
+.current {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.current h2 {
+  font-size: 1.5rem;
+}
+
+.current img {
+  width: 100px;
+  height: 100px;
+}
+
+.current .temp {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.current .description {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.details dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.details dd {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Forecast */
+.forecast h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.forecast-card {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.forecast-card .day {
+  font-weight: 700;
+}
+
+.forecast-card img {
+  width: 60px;
+  height: 60px;
+}
+
+.forecast-card .muted {
+  margin-left: 0.5rem;
+}
+
+/* Animations */
+.fade-up {
+  animation: fade-up 0.4s ease-out both;
+  animation-delay: calc(var(--i, 0) * 80ms);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .spinner {
+    animation: none;
+  }
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .current .temp {
+    font-size: 3rem;
+  }
+}
